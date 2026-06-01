@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:ludii.games)",
+      "Bash(python3 -c ' *)"
+    ]
+  }
+}
