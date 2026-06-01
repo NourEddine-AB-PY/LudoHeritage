@@ -1,12 +1,12 @@
 # LudoHeritage
 
-> An interactive web platform dedicated to preserving and exploring traditional board games from around the world — in French.
+> An interactive web platform for preserving and exploring traditional board games from around the world — in French.
 
 ---
 
 ## What is LudoHeritage?
 
-LudoHeritage is a full-stack web application built as a final-year project at **ENSIAS (Rabat)**. It brings together a curated catalog of 20 traditional board games with rich cultural context, interactive exploration tools, an AI assistant, and a community space — all in French.
+LudoHeritage is a full-stack web application built as a final-year project at **ENSIAS (Rabat)**. It centralizes a curated catalog of 20 traditional board games with their history, rules, and cultural context, and pairs them with interactive tools and an AI assistant — all in French.
 
 ---
 
@@ -14,7 +14,7 @@ LudoHeritage is a full-stack web application built as a final-year project at **
 
 | Feature | Description |
 |---|---|
-| **Game Catalog** | 20 traditional games with history, rules, mechanics and cultural value |
+| **Game Catalog** | 20 games with history, rules, mechanics and cultural value |
 | **Interactive Map** | Explore games geographically on a world map |
 | **Timeline** | Browse games on a historical timeline from Antiquity to modern times |
 | **LudoBot** | AI assistant that answers questions and recommends games based on your profile |
@@ -30,7 +30,7 @@ LudoHeritage is a full-stack web application built as a final-year project at **
 
 **Backend**
 - Java 21 + Spring Boot 3.2
-- MongoDB (data persistence)
+- MongoDB
 - Ollama (local AI engine powering LudoBot)
 - Maven
 
@@ -42,13 +42,11 @@ LudoHeritage is a full-stack web application built as a final-year project at **
 
 ## Prerequisites
 
-Make sure you have the following installed before running the project:
-
 - [Java 21](https://adoptium.net/)
 - [Maven 3.9+](https://maven.apache.org/)
 - [Node.js 18+](https://nodejs.org/)
 - [MongoDB](https://www.mongodb.com/try/download/community) running on `localhost:27017`
-- [Ollama](https://ollama.com/) *(optional — LudoBot works without it using a fallback)*
+- [Ollama](https://ollama.com/) *(optional — LudoBot falls back to catalog-based responses if unavailable)*
 
 ---
 
@@ -57,8 +55,8 @@ Make sure you have the following installed before running the project:
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/your-username/ludoheritage.git
-cd ludoheritage
+git clone https://github.com/NourEddine-AB-PY/LudoHeritage.git
+cd LudoHeritage
 ```
 
 ### 2. Start the backend
@@ -67,7 +65,7 @@ cd ludoheritage
 mvn spring-boot:run
 ```
 
-The server starts on **http://localhost:8080**. The game catalog is seeded into MongoDB automatically on first run.
+The server starts on **http://localhost:8080**. The game catalog is seeded into MongoDB automatically on startup.
 
 ### 3. Start the frontend
 
@@ -81,19 +79,17 @@ The app is available at **http://localhost:5173**.
 
 ### 4. (Optional) Enable LudoBot AI
 
-Install a model with Ollama:
-
 ```bash
 ollama pull llama3
 ```
 
-LudoBot connects to Ollama automatically. If Ollama is not running, it falls back to catalog-based responses.
+LudoBot connects to Ollama automatically on startup. Without it, a fallback response engine is used.
 
 ---
 
 ## Environment Variables
 
-You can override defaults using a `.env` file at the project root:
+Create a `.env` file at the project root to override defaults:
 
 ```env
 MONGODB_URI=mongodb://localhost:27017/ludoheritage
@@ -120,27 +116,33 @@ Tests run: 53  |  Failures: 0  |  Errors: 0  |  BUILD SUCCESS
 ## Project Structure
 
 ```
-ludoheritage/
+LudoHeritage/
 ├── src/
-│   └── main/java/org/LudoHeritage/
-│       ├── auth/          User accounts & authentication
-│       ├── agent/         LudoBot & Ollama integration
-│       ├── controller/    Game catalog REST API
-│       ├── community/     Forum posts & comments
-│       ├── quiz/          Quiz scores & leaderboard
-│       ├── service/       Business logic & AI service
-│       └── config/        CORS, security, error handling
+│   ├── main/
+│   │   ├── java/org/LudoHeritage/
+│   │   │   ├── agent/        LudoBot & Ollama integration
+│   │   │   ├── auth/         User accounts & authentication
+│   │   │   ├── community/    Forum posts & comments
+│   │   │   ├── config/       CORS, security, error handling
+│   │   │   ├── controller/   Game catalog REST API
+│   │   │   ├── model/        Game data models
+│   │   │   ├── quiz/         Quiz scores & leaderboard
+│   │   │   └── service/      Business logic & AI service
+│   │   └── resources/
+│   │       └── application.properties
+│   └── test/                 Unit, integration & stress tests
 ├── frontend/
-│   └── src/               React components & pages
-├── rapport/               LaTeX project report
+│   └── src/
+│       ├── components/       Reusable React components
+│       ├── App.jsx           Main application component
+│       ├── main.jsx          Entry point
+│       └── styles.css
 └── pom.xml
 ```
 
 ---
 
 ## The 20 Games
-
-The catalog covers games from Africa, Asia, and Europe across three historical periods.
 
 <details>
 <summary>Show full list</summary>
@@ -172,8 +174,7 @@ The catalog covers games from Africa, Asia, and Europe across three historical p
 
 ---
 
-## Authors
+## Author
 
-Developed by students of **Filière Ingénierie Informatique — ENSIAS Rabat**
-Academic year 2024–2025
-Supervised by **M. Hicham Salaheddine**
+**Nour-Eddine Abbou** — Filière Ingénierie Informatique, ENSIAS Rabat
+Supervised by **M. Khalid Nafil** — Academic year 2024–2025
