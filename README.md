@@ -177,4 +177,5 @@ LudoHeritage/
 ## Author
 
 **Nour-Eddine Abbou** — Filière Ingénierie Informatique, ENSIAS Rabat
-Supervised by **M. Khalid Nafil** — Academic year 2025–2026
+Supervised by **M. Khalid Nafil** — Academic year 2026–2027
+
